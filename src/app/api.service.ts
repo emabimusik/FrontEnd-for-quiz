@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
+import{Subject} from 'rxjs';
 @Injectable(
 
 )
 
 export class ApiService{
-
-      
+       
+       private selectedQuestion = new Subject<any>();
+       questionSelected = this.selectedQuestion.asObservable();
         constructor(private http: HttpClient){}
 
        postQuestion(question){
@@ -17,6 +18,10 @@ export class ApiService{
        }
        getQuestion(){
         return this.http.get("https://localhost:5001/api/questions");
+      }
+
+      selectQuestion(question){
+          this.selectedQuestion.next(question);
       }
 
 }

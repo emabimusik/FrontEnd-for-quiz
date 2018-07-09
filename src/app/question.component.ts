@@ -9,9 +9,11 @@ import {ApiService} from './api.service';
 })
 export class QuestionComponent {
   question={}
-  constructor(private api : ApiService){
-
-  }
+  constructor(private api : ApiService){}
+  
+  ngOnInit(){
+    this.api.questionSelected.subscribe(question =>this.question = question);
+   }
   post(question){
    this.api.postQuestion(question);
   }
