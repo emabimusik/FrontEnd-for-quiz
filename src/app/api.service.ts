@@ -15,6 +15,9 @@ export class ApiService{
           console.log(res);
          });
        }
+       getQuestion(){
+        return this.http.get("https://localhost:5001/api/questions");
+      }
 
 }
 
