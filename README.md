@@ -1,4 +1,4 @@
-# FrontEnd
+# Quiz web app FrontEnd buit with angular5 to consume  quizBackend buit with .netcore 2* api
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
 
