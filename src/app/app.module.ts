@@ -7,7 +7,7 @@ import {MatButtonModule,
   MatCardModule,
   MatListModule,
   MatToolbarModule} from '@angular/material';
-import { FormsModule } from '@angular/forms';
+import { FormsModule,ReactiveFormsModule } from '@angular/forms';
 import { RouterModule} from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -18,13 +18,16 @@ import {HomeComponent}   from'./home.component';
 import {NavComponent} from './nav.component';
 import {QuizComponent} from './quiz.component';
 import {QuizzesComponent} from './quizzes.component';
+import {RegisterComponent } from './register.component';
 
 const routes=[
   {path:'', component:HomeComponent},
+  {path:'question/:quizId', component:QuestionComponent},
   {path:'quiz', component:QuizComponent},
   {path:'quizzes', component:QuizzesComponent},
   {path:'question', component:QuestionComponent},
   {path:'questions', component:QuestionsComponent},
+  {path:'register', component:RegisterComponent},
 ]
 @NgModule({
   declarations: [
@@ -34,7 +37,8 @@ const routes=[
     HomeComponent,
     NavComponent,
     QuizComponent,
-    QuizzesComponent
+    QuizzesComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
@@ -43,6 +47,7 @@ const routes=[
     MatInputModule,
     RouterModule.forRoot(routes),
     FormsModule ,
+    ReactiveFormsModule ,
     MatToolbarModule,
     MatCardModule,
     HttpClientModule,
