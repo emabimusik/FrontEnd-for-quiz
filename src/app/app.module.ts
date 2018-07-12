@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule,
   MatInputModule,
@@ -13,13 +13,16 @@ import { RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import {QuestionComponent} from './question.component';
 import {ApiService} from './api.service';
+import {AuthService} from './auth.service';
+import {AuthInterceptor } from './auth.interceptor'
 import {QuestionsComponent}   from'./questions.component';
 import {HomeComponent}   from'./home.component';
 import {NavComponent} from './nav.component';
 import {QuizComponent} from './quiz.component';
 import {QuizzesComponent} from './quizzes.component';
 import {RegisterComponent } from './register.component';
-
+import {LoginComponent} from './login.component'; 
+import {PlayComponent} from './play.component'
 const routes=[
   {path:'', component:HomeComponent},
   {path:'question/:quizId', component:QuestionComponent},
@@ -28,6 +31,8 @@ const routes=[
   {path:'question', component:QuestionComponent},
   {path:'questions', component:QuestionsComponent},
   {path:'register', component:RegisterComponent},
+  {path:'login',component:LoginComponent},
+  {path:'play',component:PlayComponent},
 ]
 @NgModule({
   declarations: [
@@ -39,6 +44,8 @@ const routes=[
     QuizComponent,
     QuizzesComponent,
     RegisterComponent,
+    LoginComponent,
+    PlayComponent,
   ],
   imports: [
     BrowserModule,
@@ -53,7 +60,12 @@ const routes=[
     HttpClientModule,
     MatListModule,
   ],
-  providers: [ApiService],
+  providers: [ApiService,AuthService,{
+  provide: HTTP_INTERCEPTORS,
+  useClass:AuthInterceptor,
+  multi:true
+
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
