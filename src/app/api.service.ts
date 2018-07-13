@@ -23,7 +23,7 @@ export class ApiService {
       console.log(res);
     });
   }
-  getQuestion(quizId) {
+  getQuestions(quizId) {
     return this.http.get(`https://localhost:5001/api/questions/${quizId}`);
   }
   getQuizzes() {
